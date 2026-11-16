@@ -1,19 +1,115 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#102b35"><title>C Learning Lab | Arrays, Pointers & Structures</title><link rel="stylesheet" href="style.css"></head>
 <body>
-<header class="topbar"><a class="brand" href="#home"><span class="brand-mark">C</span><span>C Learning Lab<small>Learn by doing</small></span></a><nav><a href="#learn">Learn</a><a href="#practice">Practice</a></nav><span class="level-pill"><i></i> Beginner path</span></header>
+<header class="topbar"><a class="brand" href="#home"><span class="brand-mark">C</span><span>C Learning Lab<small>Learn by doing</small></span></a><nav><a href="#learn">Learn</a><a href="#notes">Notes</a><a href="#practice">Practice</a><a href="#quiz">Quiz</a></nav><span class="level-pill"><i></i> Student &amp; teacher friendly</span></header>
 <main id="home">
 <section class="hero"><div><p class="eyebrow">YOUR C PROGRAMMING WORKSHOP</p><h1>Understand the building blocks.<br><em>Then make them work.</em></h1><p class="hero-text">Explore arrays, pointers, and structures through short lessons and hands-on challenges. Write code, check your thinking, and learn from useful hints.</p><a class="primary-button" href="#learn">Start learning <span>↓</span></a></div><div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="code-card"><div class="code-top"><i></i><i></i><i></i><span>hello.c</span></div><pre><b>int</b> scores[] = {<strong>88</strong>, <strong>94</strong>};
 <b>int</b> *p = scores;
 
 printf(<u>"%d"</u>, *(p + 1));</pre><div class="code-result"><span>▶</span> Output <b>94</b></div></div><span class="float-tag tag-array">[ ] arrays</span><span class="float-tag tag-pointer">&amp; pointers</span><span class="float-tag tag-struct">{ } structs</span></div></section>
-<section class="stats"><div><b>01</b><span>Explore concepts</span></div><div><b>02</b><span>Write some code</span></div><div><b>03</b><span>Debug with confidence</span></div></section>
+<section class="stats"><div><b>01</b><span>Explore concepts</span></div><div><b>02</b><span>Write some code</span></div><div><b>03</b><span>Debug with confidence</span></div><div><b>04</b><span>Check understanding</span></div></section>
 <section id="learn" class="section-block"><div class="section-heading"><div><p class="eyebrow">THE LEARNING PATH</p><h2>Three ideas. One language.</h2></div><p>Pick a topic to see the idea, a tiny example, and what to remember.</p></div>
 <div class="topic-grid"><button class="topic-card selected" data-topic="arrays"><span class="topic-icon array-icon">[ ]</span><span class="topic-meta">01 · COLLECTIONS</span><strong>Arrays</strong><span class="topic-desc">Keep a group of same-type values together.</span><span class="card-arrow">↗</span></button><button class="topic-card" data-topic="pointers"><span class="topic-icon pointer-icon">&amp;</span><span class="topic-meta">02 · ADDRESSES</span><strong>Pointers</strong><span class="topic-desc">Work with the address of a value in memory.</span><span class="card-arrow">↗</span></button><button class="topic-card" data-topic="structures"><span class="topic-icon struct-icon">{ }</span><span class="topic-meta">03 · CUSTOM TYPES</span><strong>Structures</strong><span class="topic-desc">Group related values, even when types differ.</span><span class="card-arrow">↗</span></button></div>
 <article class="lesson-panel"><div class="lesson-number">01</div><div class="lesson-content"><p class="eyebrow" id="lesson-kicker">COLLECTIONS</p><h3 id="lesson-title"></h3><p id="lesson-copy"></p><div class="lesson-code"><pre id="lesson-code"></pre><button id="copy-lesson" class="copy-button">Copy code</button></div><div class="takeaway"><span>✦</span><p id="lesson-tip"></p></div></div></article></section>
-<section id="practice" class="section-block practice-section"><div class="section-heading"><div><p class="eyebrow">YOUR TURN</p><h2>Practice in the code lab.</h2></div><p>Try a challenge, write a solution, then run the guided checker.</p></div>
+<section id="notes" class="section-block notes-section">
+<div class="section-heading"><div><p class="eyebrow">STUDY NOTES</p><h2>Build a strong foundation.</h2></div><p>Read the topic notes at your own pace. Each guide explains the idea, shows C examples, and highlights common mistakes.</p></div>
+<div class="notes-layout">
+<div class="notes-tabs" role="tablist" aria-label="C topic notes">
+<button id="notes-tab-arrays" class="notes-tab active" type="button" role="tab" aria-selected="true" aria-controls="notes-panel-arrays" data-notes="arrays"><span class="topic-icon array-icon">[ ]</span><span><b>Arrays</b><small>Elements, indexes, loops</small></span><span class="notes-tab-arrow">↗</span></button>
+<button id="notes-tab-pointers" class="notes-tab" type="button" role="tab" aria-selected="false" aria-controls="notes-panel-pointers" data-notes="pointers"><span class="topic-icon pointer-icon">&amp;</span><span><b>Pointers</b><small>Addresses, dereferencing</small></span><span class="notes-tab-arrow">↗</span></button>
+<button id="notes-tab-structures" class="notes-tab" type="button" role="tab" aria-selected="false" aria-controls="notes-panel-structures" data-notes="structures"><span class="topic-icon struct-icon">{ }</span><span><b>Structures</b><small>Fields, records, members</small></span><span class="notes-tab-arrow">↗</span></button>
+<div class="notes-study-tip"><b>Study tip</b><p>Trace each example by hand. Write down the values and, for pointers, the address relationship after each line.</p></div></div>
+<div class="notes-reading">
+<article id="notes-panel-arrays" class="notes-panel" role="tabpanel" aria-labelledby="notes-tab-arrays" data-notes-panel="arrays"><div class="notes-title"><span class="notes-kicker">01 · COLLECTIONS</span><h3>Arrays in C</h3><p>An array stores a fixed number of values of the same type in consecutive memory locations.</p></div>
+<details class="note-card" open><summary>1. Declaring, initializing, and indexing</summary><div class="note-body"><p>Write the element type, array name, and number of elements in square brackets. C starts counting indexes at <b>0</b>.</p><pre><code>int scores[4] = {85, 92, 78, 90};
+printf("%d\n", scores[0]); // 85
+scores[1] = 95;             // update the second element</code></pre><p>For <code>scores[4]</code>, valid indexes are <code>scores[0]</code> through <code>scores[3]</code>. Accessing outside that range is undefined behavior; C does not check array boundaries automatically.</p></div></details>
+<details class="note-card"><summary>2. Traversing an array with a loop</summary><div class="note-body"><p>A loop is the usual way to process every item. Start at zero and stop while the index is less than the element count.</p><pre><code>int values[3] = {4, 8, 12};
+int sum = 0;
+for (int i = 0; i &lt; 3; i++) {
+    sum += values[i];
+}
+printf("sum = %d\n", sum);</code></pre><p>The condition <code>i &lt; 3</code> visits indexes 0, 1, and 2. Using <code>i &lt;= 3</code> would try one extra element.</p></div></details>
+<details class="note-card"><summary>3. Finding the number of elements</summary><div class="note-body"><p>When an array is declared in the same scope, <code>sizeof</code> can calculate its element count. This works while the expression still refers to the actual array.</p><pre><code>#include &lt;stddef.h&gt;
+int values[] = {4, 8, 12, 16};
+size_t count = sizeof values / sizeof values[0];</code></pre><p>When an array is passed to a function, it behaves like a pointer to its first element. Pass the count as a separate argument.</p></div></details>
+<details class="note-card"><summary>4. Two-dimensional arrays</summary><div class="note-body"><p>A two-dimensional array can represent rows and columns. Every row has the same number of columns.</p><pre><code>int grid[2][3] = {
+    {1, 2, 3},
+    {4, 5, 6}
+};
+printf("%d\n", grid[1][2]); // 6</code></pre><p>The first index chooses a row; the second chooses a column. Valid row indexes are 0–1 and column indexes are 0–2.</p></div></details>
+<details class="note-card"><summary>5. Arrays and C strings</summary><div class="note-body"><p>A C string is a character array ending in the special null character <code>'\0'</code>. Leave space for it when declaring or copying a string.</p><pre><code>char name[6] = "Mika"; // includes terminating '\0'
+printf("%s\n", name);</code></pre><p>An array that is not null-terminated cannot safely be used with string functions such as <code>printf("%s", name)</code>.</p></div></details>
+<div class="notes-callout"><b>Remember</b><p>Arrays have a fixed size once declared. Track the valid index range and pass the array length when a function needs it.</p></div></article>
+<article id="notes-panel-pointers" class="notes-panel" role="tabpanel" aria-labelledby="notes-tab-pointers" data-notes-panel="pointers" hidden><div class="notes-title"><span class="notes-kicker">02 · ADDRESSES</span><h3>Pointers in C</h3><p>A pointer is a typed variable that stores the memory address of an object.</p></div>
+<details class="note-card" open><summary>1. Declaring and initializing a pointer</summary><div class="note-body"><p>The pointer type tells C what kind of object is at the stored address. Use <code>&amp;</code> to get an existing variable’s address.</p><pre><code>int count = 10;
+int *ptr = &amp;count; // ptr points to count</code></pre><p>Read <code>int *ptr</code> as “ptr is a pointer to int.” In <code>int *a, b;</code>, only <code>a</code> is a pointer; <code>b</code> is an int.</p></div></details>
+<details class="note-card"><summary>2. Dereferencing: reading and changing a value</summary><div class="note-body"><p>In an expression, unary <code>*</code> follows a pointer to access the object at that address. This is called dereferencing.</p><pre><code>int count = 10;
+int *ptr = &amp;count;
+printf("%d\n", *ptr); // reads 10
+*ptr = 25;             // changes count</code></pre><p>The <code>*</code> in a declaration means “pointer to”; the <code>*</code> in <code>*ptr</code> means “the value ptr points to.”</p></div></details>
+<details class="note-card"><summary>3. Null and uninitialized pointers</summary><div class="note-body"><p>Never dereference an uninitialized pointer; it may hold an unpredictable address. A pointer that intentionally points nowhere can be initialized to <code>NULL</code>, but it must be checked before dereferencing.</p><pre><code>int *ptr = NULL;
+if (ptr != NULL) {
+    printf("%d\n", *ptr);
+}</code></pre><p>Setting a pointer to <code>NULL</code> does not create an object; it makes the “points nowhere” state explicit.</p></div></details>
+<details class="note-card"><summary>4. Arrays and pointer arithmetic</summary><div class="note-body"><p>In most expressions, an array name becomes a pointer to its first element. Adding one to an <code>int *</code> moves to the next int.</p><pre><code>int nums[] = {4, 8, 12};
+int *p = nums;
+printf("%d\n", nums[1]);   // 8
+printf("%d\n", *(p + 1)); // also 8</code></pre><p><code>nums[i]</code> is equivalent to <code>*(nums + i)</code>. Stay within the array, and never dereference the one-past-the-end address.</p></div></details>
+<details class="note-card"><summary>5. Pointers as function parameters</summary><div class="note-body"><p>C passes function arguments by value. Passing a pointer copies the address, letting a function access or update the original object.</p><pre><code>void setToZero(int *value) {
+    *value = 0;
+}
+int score = 90;
+setToZero(&amp;score); // score becomes 0</code></pre><p>The caller passes an address with <code>&amp;score</code>; inside the function, <code>*value</code> refers to the original score.</p></div></details>
+<details class="note-card"><summary>6. Dynamic memory: an introduction</summary><div class="note-body"><p><code>malloc</code> requests memory while the program runs. Check whether it returned <code>NULL</code>, use the memory, then release it with <code>free</code>.</p><pre><code>#include &lt;stdlib.h&gt;
+int *items = malloc(3 * sizeof *items);
+if (items != NULL) {
+    items[0] = 42;
+    free(items);
+}</code></pre><p>After <code>free(items)</code>, do not use the old address. Dynamic memory needs careful ownership and error handling.</p></div></details>
+<div class="notes-callout"><b>Remember</b><p>A pointer is safe to dereference only when it points to a live object of the correct type.</p></div></article>
+<article id="notes-panel-structures" class="notes-panel" role="tabpanel" aria-labelledby="notes-tab-structures" data-notes-panel="structures" hidden><div class="notes-title"><span class="notes-kicker">03 · CUSTOM TYPES</span><h3>Structures in C</h3><p>A structure groups related fields under one type. The fields can have different C types.</p></div>
+<details class="note-card" open><summary>1. Defining a structure and making a variable</summary><div class="note-body"><p>Define the structure type first, then declare variables of that type. Each variable contains its own fields.</p><pre><code>struct Student {
+    int id;
+    float gpa;
+};
+struct Student learner = {202501, 3.5f};</code></pre><p>The semicolon after the closing brace is required. Initializer values follow the field declaration order.</p></div></details>
+<details class="note-card"><summary>2. Accessing and updating fields</summary><div class="note-body"><p>Use the dot operator (<code>.</code>) when you have a structure variable.</p><pre><code>printf("ID: %d\n", learner.id);
+learner.gpa = 3.7f;</code></pre><p>Use matching format specifiers: <code>%d</code> for <code>int</code>; <code>%f</code> for <code>float</code> in <code>printf</code>, because float arguments are promoted to double.</p></div></details>
+<details class="note-card"><summary>3. Pointers to structures and the arrow operator</summary><div class="note-body"><p>If a pointer refers to a structure, use <code>-&gt;</code> to access a field through it.</p><pre><code>struct Student *ptr = &amp;learner;
+printf("%.1f\n", ptr-&gt;gpa);
+ptr-&gt;gpa = 3.8f;</code></pre><p><code>ptr-&gt;gpa</code> is shorthand for <code>(*ptr).gpa</code>. Parentheses matter because the dot operator binds more tightly than unary <code>*</code>.</p></div></details>
+<details class="note-card"><summary>4. Arrays of structures</summary><div class="note-body"><p>An array can hold several records of the same structure type. Combine an array index with the dot operator to access a field.</p><pre><code>struct Student classList[2] = {
+    {101, 3.2f},
+    {102, 3.8f}
+};
+printf("%d\n", classList[1].id); // 102</code></pre><p>A loop can process each record, just like any other array.</p></div></details>
+<details class="note-card"><summary>5. Passing structures to functions</summary><div class="note-body"><p>Passing a structure directly copies its field values into the function parameter. Pass a pointer when the function should update the original or when copying a large structure is unnecessary.</p><pre><code>void improve(struct Student *s) {
+    s-&gt;gpa += 0.1f;
+}
+improve(&amp;learner);</code></pre><p>Use <code>const struct Student *</code> if a function needs to read a structure without changing it.</p></div></details>
+<details class="note-card"><summary>6. Nested structures and typedef</summary><div class="note-body"><p>One structure can contain another. A <code>typedef</code> can provide a shorter alias for a structure type.</p><pre><code>typedef struct {
+    int month;
+    int day;
+} Date;
+typedef struct {
+    char name[30];
+    Date birthday;
+} Person;
+Person p = {"Ari", {4, 12}};
+printf("%d\n", p.birthday.month);</code></pre><p>In standard C, <code>typedef</code> creates an alias; it does not create a different kind of object.</p></div></details>
+<details class="note-card"><summary>7. Copying structures and pointer fields</summary><div class="note-body"><p>Structure assignment copies each field. If a field is a pointer, only the address is copied; the pointed-to data is not duplicated.</p><pre><code>int number = 7;
+struct Record { int *value; };
+struct Record a = {&amp;number};
+struct Record b = a; // b.value points to the same int
+printf("%d\\n", *b.value);</code></pre><p>This is a shallow copy. Be careful when structures contain pointers, especially when allocating and freeing memory.</p></div></details>
+<div class="notes-callout"><b>Remember</b><p>Use <code>.</code> for a structure variable and <code>-&gt;</code> for a pointer to a structure. Structure assignment copies fields, including pointer addresses.</p></div></article>
+</div></div></section><section id="practice" class="section-block practice-section"><div class="section-heading"><div><p class="eyebrow">YOUR TURN</p><h2>Practice in the code lab.</h2></div><p>Try a challenge, write a solution, then run the guided checker.</p></div>
 <div class="lab-shell"><aside class="challenge-side"><p class="eyebrow">CHALLENGE <span id="challenge-count">01 / 03</span></p><div class="challenge-tabs"><button class="challenge-tab active" data-challenge="0">01 <span>Array average</span></button><button class="challenge-tab" data-challenge="1">02 <span>Pointer update</span></button><button class="challenge-tab" data-challenge="2">03 <span>Student record</span></button></div><div class="challenge-info"><span class="difficulty">● BEGINNER</span><h3 id="challenge-title"></h3><p id="challenge-prompt"></p><div class="hint-box"><b>Need a nudge?</b><p id="challenge-hint"></p></div></div><div class="progress-label"><span>Challenges</span><b id="progress-text">0 / 3 complete</b></div><div class="progress-track"><span id="progress-bar"></span></div></aside>
-<div class="editor-side"><div class="editor-head"><div><span class="file-dot"></span><span>main.c</span><span class="unsaved">GCC · C11</span></div><button class="reset-button" id="reset-code">↺ Reset</button></div><div class="editor-wrap"><div class="line-numbers" id="line-numbers">1</div><textarea id="code-editor" aria-label="C code editor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea></div><div class="stdin-row"><label for="stdin-input">Program input <span>(stdin, optional)</span></label><textarea id="stdin-input" rows="1" placeholder="Type input for scanf here"></textarea></div><div class="editor-actions"><span class="editor-note">GCC compiler · C11</span><button class="debug-button" id="debug-code">⌕ Debug my code</button><button class="run-button" id="run-code"><span>▶</span> Run with GCC</button></div><div class="terminal"><div class="terminal-head"><span><i></i> TERMINAL</span><button id="clear-terminal">Clear</button></div><div class="terminal-output" id="terminal-output" aria-live="polite"><p class="terminal-muted">Your program output and compiler messages will appear here.</p></div></div></div></div>
-<p class="runner-note"><b>Local GCC runner:</b> Start the included <code>start-lab.bat</code> and open the local address it prints. Code compiles with GCC and runs on your computer. Only run code you trust: student programs run with your Windows account permissions and are not sandboxed.</p></section>
+<div class="editor-side"><div class="editor-head"><div><span class="file-dot"></span><span>main.c</span><span class="unsaved">C practice editor</span></div><button class="reset-button" id="reset-code">↺ Reset</button></div><div class="editor-wrap"><div class="line-numbers" id="line-numbers">1</div><textarea id="code-editor" aria-label="C code editor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea></div><div class="editor-actions"><span class="editor-note">Pattern-based learning checker</span><button class="debug-button" id="debug-code">⌕ Debug my code</button><button class="run-button" id="run-code"><span>✓</span> Check code</button></div><div class="terminal"><div class="terminal-head"><span><i></i> FEEDBACK CONSOLE</span><button id="clear-terminal">Clear</button></div><div class="terminal-output" id="terminal-output" aria-live="polite"><p class="terminal-muted">Write your solution, then check it for common mistakes and challenge concepts.</p></div></div></div></div>
+<p class="runner-note"><b>About this practice tool:</b> It checks code patterns and explains common beginner mistakes. It does not compile or execute C, so it can miss errors or flag valid code. Use a C compiler when you need to run a program.</p></section>
+<section id="quiz" class="section-block quiz-section"><div class="section-heading"><div><p class="eyebrow">CHECK YOUR UNDERSTANDING</p><h2>Quick quiz, fresh questions.</h2></div><p>Each new quiz draws and shuffles questions from the topic bank. Read the explanations to learn from every answer.</p></div><div class="quiz-shell"><div class="quiz-top"><div><span class="quiz-badge">✦ KNOWLEDGE CHECK</span><h3 id="quiz-title">Arrays, pointers &amp; structures</h3><p id="quiz-progress">Question 1 of 8</p></div><div class="quiz-score"><span>Score</span><b id="quiz-score">0</b></div></div><div class="quiz-progress"><span id="quiz-progress-bar"></span></div><div class="quiz-body"><p class="quiz-topic" id="quiz-topic"></p><h4 id="quiz-question"></h4><div class="quiz-options" id="quiz-options"></div><div id="quiz-feedback" class="quiz-feedback" aria-live="polite" hidden></div><div class="quiz-controls"><button id="new-quiz" class="secondary-button">↻ New quiz</button><button id="quiz-next" class="run-button" disabled>Check answer</button></div><div id="quiz-summary" class="quiz-summary" hidden></div></div></div></section>
+<section class="teacher-guide"><div><p class="eyebrow">FOR THE CLASSROOM</p><h2>Built to support teaching, too.</h2><p>Use the short examples as a warm-up, then ask learners to explain the code before they try a challenge.</p></div><div class="teacher-prompts"><article><span>01</span><b>Ask for a prediction</b><p>“What value will this expression print, and why?”</p></article><article><span>02</span><b>Invite pair debugging</b><p>Have learners identify the first likely issue before using the helper.</p></article><article><span>03</span><b>Reflect on the concept</b><p>“Which variable stores the value, and which one stores its address?”</p></article></div></section>
 <section class="debug-strip"><span class="debug-symbol">⌕</span><div><p class="eyebrow">DEBUGGING IS A SKILL</p><h2>Errors are clues, not dead ends.</h2><p>The debug helper checks for common beginner mistakes, explains why they matter, and gives you a next step.</p></div><a href="#practice">Try the debug tool <span>↗</span></a></section>
 </main><footer><a class="brand" href="#home"><span class="brand-mark">C</span><span>C Learning Lab<small>Learn by doing</small></span></a><p>Made for curious C learners. Keep experimenting.</p><a href="#home">Back to top ↑</a></footer><script src="app.js"></script></body></html>
+
