@@ -99,11 +99,15 @@ function showQuizSummary(){ $('#quiz-options').replaceChildren();$('#quiz-topic'
 document.querySelectorAll('.topic-card').forEach(b=>b.addEventListener('click',()=>showLesson(b.dataset.topic)));
 function showNotes(topic){document.querySelectorAll('.notes-tab').forEach(tab=>{const active=tab.dataset.notes===topic;tab.classList.toggle('active',active);tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;});document.querySelectorAll('.notes-panel').forEach(panel=>{panel.hidden=panel.dataset.notesPanel!==topic;});}
 document.querySelectorAll('.notes-tab').forEach(tab=>{tab.addEventListener('click',()=>showNotes(tab.dataset.notes));tab.addEventListener('keydown',e=>{if(!['ArrowDown','ArrowUp','ArrowRight','ArrowLeft'].includes(e.key))return;e.preventDefault();const tabs=[...document.querySelectorAll('.notes-tab')],index=tabs.indexOf(tab),step=e.key==='ArrowDown'||e.key==='ArrowRight'?1:-1,next=tabs[(index+step+tabs.length)%tabs.length];showNotes(next.dataset.notes);next.focus();});});
+const validViews=new Set(['home','learn','notes','practice','quiz']);
+function showView(view,pushHistory=true){if(!validViews.has(view))view='home';document.querySelectorAll('[data-view-panel]').forEach(panel=>{panel.hidden=panel.dataset.viewPanel!==view;});document.querySelectorAll('[data-view-link]').forEach(link=>{if(link.dataset.viewLink===view)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});document.body.dataset.activeView=view;if(pushHistory&&location.hash!=='#'+view)history.pushState({view},'','#'+view);window.scrollTo(0,0);}
 document.querySelectorAll('.challenge-tab').forEach(b=>b.addEventListener('click',()=>setChallenge(Number(b.dataset.challenge))));
 $('#run-code').addEventListener('click',checkCode);$('#debug-code').addEventListener('click',debugCode);$('#reset-code').addEventListener('click',()=>setChallenge(activeChallenge));
 $('#clear-terminal').addEventListener('click',()=>report([{type:'terminal-muted',text:'Feedback console cleared.'}]));
 $('#copy-lesson').addEventListener('click',async e=>{try{await navigator.clipboard.writeText($('#lesson-code').dataset.copy);e.currentTarget.textContent='Copied!';setTimeout(()=>e.currentTarget.textContent='Copy code',1200);}catch{e.currentTarget.textContent='Select code to copy';}});
 editor.addEventListener('input',updateLines);editor.addEventListener('scroll',()=>lineNumbers.scrollTop=editor.scrollTop);editor.addEventListener('keydown',e=>{if(e.key==='Tab'){e.preventDefault();const a=editor.selectionStart,b=editor.selectionEnd;editor.setRangeText('    ',a,b,'end');updateLines();}});
 $('#quiz-next').addEventListener('click',quizNext);$('#new-quiz').addEventListener('click',startQuiz);
-document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const target=$(a.getAttribute('href'));if(target)target.scrollIntoView({behavior:'smooth'});}));
-showLesson('arrays');showNotes('arrays');setChallenge(0);updateProgress();startQuiz();
+const viewForHash={'#home':'home','#learn':'learn','#notes':'notes','#practice':'practice','#quiz':'quiz'};
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const view=viewForHash[a.getAttribute('href')];if(view){e.preventDefault();showView(view);}}));
+window.addEventListener('popstate',()=>showView(viewForHash[location.hash]||'home',false));
+showLesson('arrays');showNotes('arrays');setChallenge(0);updateProgress();startQuiz();showView(viewForHash[location.hash]||'home',false);
